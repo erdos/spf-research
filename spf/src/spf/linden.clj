@@ -3,39 +3,20 @@
             [quil.middleware :as m]
             [mount.core :refer [defstate]]))
 
-(comment
-  ;; original rules were:
-  (def initial '[A + + B + C B + A + B + C + + B - - D])
-  (def rules '{A [b +  H - -  I A b]
-               B [j B + C j]
-               C [j D + E j]
-               D [j F + G j]
-               E [b + H - - I A b]
-               F [j B + C j]
-               G [j D + E j]
-               H [j F + G j]
-               I [b D - G b]})
-  )
+(def initial '[A - - - - - -  B])
 
-(def initial '[D A + + B + C B + A + B + C + + B])
+(def rules '{A [+ B - - A +]
+             B [+ C - - A +]
+             C [- C + + D -]
+             D [- C + + A -]})
 
-(def rules
-  '{A [b + B - -  D A b]
-    B [j B + C j]
-    C [j B + A j]
-    D [b B - C b]})
 
 (defn cs [x]
   (case x
-    A (q/color 22 32 43)
-    B (q/color 42 32 43)
-    C (q/color 62 32 43)
-    D (q/color 82 32 43)
-    E (q/color 102 32 43)
-    F (q/color 122 32 43)
-    G (q/color 142 32 43)
-    H (q/color 162 32 43)
-    I (q/color 182 32 43)))
+    A (q/color 22 32 143)
+    B (q/color 42 132 43)
+    C (q/color 162 32 43)
+    D (q/color 182 32 143)))
 
 ;cs
 
@@ -50,13 +31,10 @@
 (defn draw-path [path]
   (q/push-matrix)
   (doseq [x path
-          :let [r 400]]
+          :let [r 600]]
     (case x
-      j   (q/rotate (q/radians +30.0))
-      b   (q/rotate (q/radians -30.0))
-
-      +   (q/rotate (q/radians -60.0))
-      -   (q/rotate (q/radians +60.0))
+      +   (q/rotate (q/radians -30.0))
+      -   (q/rotate (q/radians +30.0))
       (do (q/stroke (cs x)) (q/line 0 0 0 r) (q/translate 0 r))))
   (q/pop-matrix))
 
