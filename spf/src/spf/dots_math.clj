@@ -1,4 +1,5 @@
 (ns spf.dots-math
+  "Iterated Function System description"
   (:require [quil.core :as q]
             [quil.middleware :as m]
             [mount.core :refer [defstate]]))

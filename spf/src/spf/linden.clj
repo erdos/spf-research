@@ -3,13 +3,12 @@
             [quil.middleware :as m]
             [mount.core :refer [defstate]]))
 
-(def initial '[A - - - - - -  B])
+(def axiom '[A - - - - - -  B])
 
 (def rules '{A [+ B - - A +]
              B [+ C - - A +]
              C [- C + + D -]
              D [- C + + A -]})
-
 
 (defn cs [x]
   (case x
@@ -18,20 +17,17 @@
     C (q/color 162 32 43)
     D (q/color 182 32 143)))
 
-;cs
-
-(defn step! [path] (mapcat (fn [x] (get rules x [x])) path))
+(def step! (partial mapcat #(get rules % [%])))
 
 (defn setup []
   (q/frame-rate 4)
-  {:path initial, :cnt 1})
+  {:path axiom, :cnt 1})
 
 (defn update-state [state] (update state :cnt inc))
 
 (defn draw-path [path]
   (q/push-matrix)
-  (doseq [x path
-          :let [r 600]]
+  (doseq [x path :let [r 600]]
     (case x
       +   (q/rotate (q/radians -30.0))
       -   (q/rotate (q/radians +30.0))
