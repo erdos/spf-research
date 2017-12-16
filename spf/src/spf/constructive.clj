@@ -13,7 +13,8 @@
 
 (defn- spidron-arm-pts [[x1 y1] [x2 y2] left?]
   (let [sc    (* sqrt3-1 (Math/hypot (- x1 x2) (- y1 y2)))
-        angle (+ (Math/atan2 (- y1 y2) (- x2 x1)) (/ Math/PI 3) (if left? deg60 0))]
+        angle (+ (Math/atan2 (- y1 y2) (- x2 x1))
+                 (if left? deg120 deg60))]
     (concat
      (for [i (range 8)
            :let [rotation (+ angle (* i deg30))
