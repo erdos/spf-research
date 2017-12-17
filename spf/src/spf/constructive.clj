@@ -33,24 +33,49 @@
           zs   (mapcat (partial spidron-arm-side (dec n)) pts2 (next pts2))]
       (concat (reverse ys) (next zs)))))
 
+(defonce steps (atom 3))
+                                        ;(swap! steps dec)
+; (swap! steps inc)
 (defn spidron-silhouette  [n [x1 y1 :as p1] [x2 y2 :as p2]]
-  (concat (spidron-arm-side STEPS [x1 y1] [x2 y2])
-          (next (spidron-arm-side STEPS [x2 y2] [x1 y1]))))
+  (concat (spidron-arm-side n [x1 y1] [x2 y2])
+          (next (spidron-arm-side n [x2 y2] [x1 y1]))))
 
 (defn draw-lines [pts]
   (doseq [[[x1 y1] [x2 y2]] (map vector pts (next pts))] (q/line x1 y1 x2 y2)))
 
-(def STEPS 6)
-
 (defn spidron-arm [x1 y1 x2 y2]
-  (q/stroke 255 0 0)
-  (draw-lines (spidron-silhouette STEPS [x1 y1] [x2 y2])))
+  (q/stroke 0)
+  (draw-lines (spidron-silhouette 1 [x1 y1] [x2 y2]))
+
+  ;(q/stroke 64)
+  ;(draw-lines (spidron-silhouette 2 [x1 y1] [x2 y2]))
+
+ ; (q/stroke 128)
+ ; (draw-lines (spidron-silhouette 3 [x1 y1] [x2 y2]))
+
+  (q/stroke 192 12 32)
+  (draw-lines (spidron-silhouette 4 [x1 y1] [x2 y2]))
+
+ ; (q/stroke 220)
+ ; (draw-lines (spidron-silhouette 5 [x1 y1] [x2 y2]))
+
+;  (q/stroke 240)
+;  (draw-lines (spidron-silhouette 6 [x1 y1] [x2 y2]))
+
+  )
 
 (defn update-state [s] s)
 
 (defn draw-state [state]
   (q/background 233 243 55)
-  (try (spidron-arm 200 200 544 555) (catch Exception e nil)))
+
+
+  (let [inside #(try (spidron-arm 360 100 360 860)
+                     (catch Exception e nil))]
+    (inside)
+    #_(q/do-record (q/create-graphics 960 960 :pdf "/home/erdos/aaa.pdf")
+                 (inside)
+                )))
 
 (defstate sketch
   :start (future (q/sketch :size [960 960]

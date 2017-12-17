@@ -1,0 +1,42 @@
+\begin{thebibliography}{1}
+
+\bibitem{Chang}
+Winston Chang.
+\newblock {\LaTeX} {Cheat Sheet}, 2010.
+\newblock \url{http://www.stdout.org/\~winston/latex/} (as of Jan.~8, 2012).
+
+\bibitem{EJCx}
+Miroslav Chladn{\'y} and Martin {\v S}koviera.
+\newblock Factorisation of {S}narks.
+\newblock {\em Electronic Journal of Combinatorics}, 17(1):R32, 2010.
+\newblock \url{http://www.combinatorics.org/Volume_17/PDF/v17i1r32.pdf} (as of
+  Jan.~8, 2012).
+
+\bibitem{coxe41}
+H.~S.~M. Coxeter.
+\newblock The non-{E}uclidean symmetry of {E}scher's picture {C}ircle {L}imit
+  {I}{I}{I}.
+\newblock {\em Leonardo}, 12:19--25, 1979.
+
+\bibitem{Grat}
+George {Gr\"atzer}.
+\newblock {\em More Math Into {LaTeX}}.
+\newblock Springer, 2007.
+
+\bibitem{Pata}
+Oren Patashnik.
+\newblock {\BibTeX} 101, 1998.
+\newblock \url{http://www.tug.org/TUGboat/Articles/tb19-2/tb59patash.pdf} (as
+  of Jan~8, 2012).
+
+\bibitem{bridges2016:15}
+Saul Schleimer and Henry Segerman.
+\newblock Squares that look round: Transforming spherical images.
+\newblock In Carlo S\'equin Douglas McKenna Krist\'of~Fenyvesi Eve~Torrence,
+  Bruce~Torrence and Reza Sarhangi, editors, {\em Proceedings of Bridges 2016:
+  Mathematics, Music, Art, Architecture, Education, Culture}, pages 15--24,
+  Phoenix, Arizona, 2016. Tessellations Publishing.
+\newblock Available online at
+  \url{http://archive.bridgesmathart.org/2016/bridges2016-15.html}.
+
+\end{thebibliography}

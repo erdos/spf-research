@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amsthm, amssymb}    % May not all be necessary
+\usepackage{bridges}                     % Custom bridges proceedings style
+\usepackage{graphicx}                    % For including pictures
+\usepackage{hyperref}                    % For formatting (clickable) URLs
+\usepackage{gensymb}
+\usepackage{tikz}
+
+% -----------------------------------------------------------------------------
+
+\title{Deriving a rep-3-tile from the Spidron System}
+\author{ Janos Erdos \\ {\tt erdosj@gmail.com}}
+\date{}				% Suppress any date on submissions
+
+% -----------------------------------------------------------------------------
+
+\begin{document} \maketitle \thispagestyle{empty}
+
+\begin{abstract}
+
+In this paper I will investigate a fractal shape derived from the Spidron system. The new fractal is  a rep-3-tile. 
+Some interesting properties of the derived fractal shape will be discussed. An effort is made to describe
+the derived shape with three different methods: a constructive approach, an iterated function system and an L-System.
+
+\end{abstract}
+
+\section*{Introduction}
+
+The Spidron System is a construction of Hungarian graphic designer Daniel Erdely. The geometric construction
+has fascinating planar properties.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{The Spidrons}
+
+\noindent The planar Spidron is an infinite alternating sequence of joining isosceles (with angles $30\degree + 30\degree + 120\degree$) and equilateral ($60\degree$) triangles. This shape tessellates the plane (with $?$ symmetry). 
+
+\section*{Deriving an other fractal}
+
+\noindent sdfsdf
+
+\noindent sdfsfdsdf
+
+\noindent sdfsfsf
+
+\noindent sdfsdfsdf
+
+\noindent sdfsdfsdf
+
+\begin{figure}[h!tbp]
+	\begin{center}
+	\includegraphics[width=5in]{figures/construction-steps}
+	\end{center}
+	\caption{Construction from the original Spidrons}
+	\label{FigSample}
+\end{figure}
+
+\noindent It is easy to see that the area of the result fractal is equal to the area of the original shape. The circumference, however, is infinity as we replace parts of the outline with longer parts of a fixed ratio in each iteration step.
+
+\noindent Noticing that the resulting point set has a \emph{cut-point} at the middle of the shape. Removing this point cuts the shape in two congruent halves. This is a new property which was not found in the original Spidron shape. This discovery allows us to observe properties of only the half shape.
+
+\begin{figure}[h!tbp]
+	\begin{center}
+	\includegraphics[width=4in]{figures/division-3-steps}
+	\end{center}
+	\caption{Resulting half-shape is self-tessellating}
+	\label{FigSample}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Iterated Function System approach}
+
+Lets define $f_{1} ,f_{2} ,f_{3} :\mathbb{R}^2\rightarrow \mathbb{R}^2$ function system as the following.
+
+$$
+\begin{aligned}
+f_{1}(x,y) &= \left(  \frac{x}{2} - \frac{y}{2\sqrt{3}} ,\ \frac{x}{2\sqrt{3}} + \frac{y}{2} \right) \\
+f_{2}(x,y) &= \left( -\frac{x}{2} - \frac{y}{2\sqrt{3}} ,\ \frac{x}{2\sqrt{3}} - \frac{y}{2} + 1 \right) \\
+f_{3}(x,y) &= \left( -\frac{x}{2} + \frac{y}{2\sqrt{3}} ,\ \frac{x}{2\sqrt{3}} - \frac{y}{2} + 1 \right)
+\end{aligned}
+$$
+
+\noindent The function system consists of scaling by $ 1 / \sqrt{3} $ and rotation by $30\degree$ angles.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{L-System approach}
+
+\noindent This previous approach results in a set of points of the fractal. For practical reasons, however, it is often desired to be able to describe only the outline of our shape. For example when cutting a shape with CNC machines, or publishing a paper about a finding.
+
+
+Consider the axiom $F=A------B$ with angle $\alpha = 30 \degree$ and the following rule set:
+
+$$
+\begin{gathered}
+A\rightarrow +B--A+\\
+B\rightarrow +C--A+\\
+C\rightarrow -C++D-\\
+D\rightarrow -C++A-
+\end{gathered}
+$$
+
+\noindent It is required to downscale the resulting image on each step by the factor of $1/\sqrt3$
+
+\begin{figure}[h!tbp]
+	\begin{center}
+	\includegraphics[width=6in]{figures/l-system-9-steps}
+	\end{center}
+	\caption{First eight iterations of the L-System}
+	\label{FigSample}
+\end{figure}
+
+
+{
+\setlength{\baselineskip}{13pt}
+\begin{thebibliography}{99}
+
+\bibitem{Erdely}
+D. Erdely, ``Some Surprising New Properties of the Spidrons" 
+% http://archive.bridgesmathart.org/2005/bridges2005-179.pdf
+
+\bibitem{Szilassi}
+L. Szilassi, ``The right for doubting - and the necessity of doubt. Thoughts concerning the analysis of Erd\'ely’s Spidron System", Computer Algebra Systems and Dynamic geometry Systems in Mathematics Teaching P\'ecs, Hungary, ISBN 963642 051 3, pp. 78-96 (2005)
+
+% http://www.model.u-szeged.hu/cd/content/szilassi/Euler3d-kurzus/04%20%20%20A%20kocka%20feldarabol%25a0sa/The%20right%20for%20doubting.pdf
+
+\end{thebibliography}
+}
+
+\end{document}
