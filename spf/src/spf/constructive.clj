@@ -8,19 +8,17 @@
 (def deg30 (/ Math/PI 6))
 (def deg60 (/ Math/PI 3))
 (def deg120 (* deg60 2))
-(def deg180 Math/PI)
 (def sqrt3-1 (/ (Math/sqrt 3)))
 
 (defn- spidron-arm-pts [[x1 y1] [x2 y2] left?]
-  (let [sc    (* sqrt3-1 (Math/hypot (- x1 x2) (- y1 y2)))
+  (let [dist     (Math/hypot (- x1 x2) (- y1 y2))
         angle (+ (Math/atan2 (- y1 y2) (- x2 x1))
                  (if left? deg120 deg60))]
     (concat
      (for [i (range 8)
            :let [rotation (+ angle (* i deg30))
-                 scaling  (* sc (Math/pow sqrt3-1 i))]
-           :while (or (= 0 i) (> scaling 4)) ;; ezzel optimalizalhatunk!
-           ]
+                 scaling  (* dist (Math/pow sqrt3-1 (inc i)))]
+           :while (or (= 0 i) (> scaling 4))] ;; csak optimalizacio
        [(+ x1 (* scaling (Math/sin rotation)))
         (+ y1 (* scaling (Math/cos rotation)))])
      [[x1 y1]])))
@@ -42,7 +40,7 @@
 (defn draw-lines [pts]
   (doseq [[[x1 y1] [x2 y2]] (map vector pts (next pts))] (q/line x1 y1 x2 y2)))
 
-(def STEPS 5)
+(def STEPS 6)
 
 (defn spidron-arm [x1 y1 x2 y2]
   (q/stroke 255 0 0)
