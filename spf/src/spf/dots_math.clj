@@ -4,9 +4,11 @@
             [quil.middleware :as m]
             [mount.core :refer [defstate]]))
 
+(def STEPS 9)
+
 (defn setup []
   (q/frame-rate 2)
-  {:steps 4})
+  {:steps STEPS})
 
 (defmacro with-matrix [& bodies]
   `(try (q/push-matrix) ~@bodies (finally (q/pop-matrix))))

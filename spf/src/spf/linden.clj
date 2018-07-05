@@ -10,6 +10,9 @@
              C [- C + + D -]
              D [- C + + A -]})
 
+(def ROTATION (q/radians -30))
+(def SCALING (/ (q/sqrt 3)))
+
 (defn cs [x]
   (case x
     A (q/color 22 32 143)
@@ -18,6 +21,8 @@
     D (q/color 182 32 143)))
 
 (def step! (partial mapcat #(get rules % [%])))
+
+; (mapcat #(list "!" % % ">") [1 2 3])
 
 (defn setup []
   (q/frame-rate 4)
@@ -29,9 +34,11 @@
   (q/push-matrix)
   (doseq [x path :let [r 600]]
     (case x
-      +   (q/rotate (q/radians -30.0))
-      -   (q/rotate (q/radians +30.0))
-      (do (q/stroke (cs x)) (q/line 0 0 0 r) (q/translate 0 r))))
+      +   (q/rotate ROTATION)
+      -   (q/rotate (- ROTATION))
+      (do (q/stroke (cs x))
+          (q/line 0 0 0 r)
+          (q/translate 0 r))))
   (q/pop-matrix))
 
 (defn taker [counter x]
@@ -42,13 +49,14 @@
 
 (defn draw-state [state]
   (q/background 255)
-  (q/translate 480 580)
+  (q/translate 480 780)
   (q/rotate (q/radians 180))
+  (q/stroke-weight 4)
+  (q/scale 2 2)
 
-  (let [s (/ (q/sqrt 3))
-        path (:path state)]
+  (let [path (:path state)]
     (doseq [p (taker (:cnt state) (take 12 (iterate step! path)))]
-      (q/scale s s)
+      (q/scale SCALING SCALING)
       (draw-path p))))
 
 (defstate sketch
